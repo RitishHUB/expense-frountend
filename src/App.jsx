@@ -13,7 +13,7 @@ const AppContainer = () => {
   const addExpense = async (title, amount) => {
     console.log("asdfgh");
     
-    await fetch("http://localhost:5000/addExpense", {
+    await fetch("https://expensebackend-1-01rv.onrender.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -33,7 +33,7 @@ const Container = () => {
         setEditItem(null);
       } else {
         // call backend POST API
-        const res = await fetch("http://localhost:5000/addExpense", {
+        const res = await fetch("https://expensebackend-1-01rv.onrender.com", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ title, amount }),
@@ -53,7 +53,7 @@ const Container = () => {
   // 🔹 Delete expense
   const deleteExpense = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/deleteExpense/${id}`, {
+      const res = await fetch(`https://expensebackend-1-01rv.onrender.com/${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
