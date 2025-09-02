@@ -11,7 +11,7 @@ const Container = () => {
 
   // 🔹 Fetch expenses from backend
   useEffect(() => {
-    fetch("http://localhost:5000/expenses")
+    fetch("https://expensebackend-1-01rv.onrender.com")
       .then((res) => res.json())
       .then((data) => setTransaction(data))
       .catch((err) => console.error("Error fetching:", err));

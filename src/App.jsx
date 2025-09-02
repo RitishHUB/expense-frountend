@@ -1,84 +1,33 @@
-import { useEffect, useState } from "react";
-import BalanceContainer from "./components/BalanceContainer";
-import ExpenseForm from "./components/ExpenseForm";
-import History from "./components/History";
+import { useState } from "react";   // ✅ you forgot this import
+import Container from "./components/Container.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function App() {
-  const [transactions, setTransactions] = useState([]);
+// ❌ You cannot redefine Container here (you already import it above)
+// ✅ So I renamed it to AppContainer
+const AppContainer = () => {
+  const [transactions, setTransactions] = useState([]); // ❌ INITIAL removed, use empty array
   const [editItem, setEditItem] = useState(null);
+  console.log(editItem);
 
-  const API_URL = "http://localhost:5000/transactions"; // change if backend hosted
-
-  // Fetch all transactions
-  const fetchTransactions = async () => {
-    try {
-      const res = await fetch(API_URL);
-      const data = await res.json();
-      setTransactions(data);
-    } catch (err) {
-      console.error("Error fetching transactions:", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchTransactions();
-  }, []);
-
-  // Add or Update
   const addExpense = async (title, amount) => {
-    const newTxn = { title, amount: Number(amount) };
-
-    try {
-      if (editItem) {
-        // Update
-        await fetch(`${API_URL}/${editItem._id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newTxn),
-        });
-        setEditItem(null);
-      } else {
-        // Add
-        await fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newTxn),
-        });
-      }
-
-      fetchTransactions();
-    } catch (err) {
-      console.error("Error saving transaction:", err);
-    }
-  };
-
-  // Delete
-  const deleteExpense = async (id) => {
-    try {
-      await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-      fetchTransactions();
-    } catch (err) {
-      console.error("Error deleting transaction:", err);
-    }
-  };
-
-  // Edit
-  const editExpense = (txn) => {
-    setEditItem(txn);
+    console.log("asdfgh");
+    
+    await fetch("https://expensebackend-1-01rv.onrender.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, amount: Number(amount) }),
+    });
   };
 
   return (
-    <div className="container">
-      <h2>Expense Tracker</h2>
-      <BalanceContainer transaction={transactions} />
-      <ExpenseForm addExpense={addExpense} editItem={editItem} />
-      <History
-        transactions={transactions}
-        deleteExpense={deleteExpense}
-        editExpense={editExpense}
-      />
-    </div>
+    <>
+      <Container />
+      <ToastContainer />
+    </>
   );
-}
+};
 
-export default App;
+export default AppContainer;

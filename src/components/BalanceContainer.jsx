@@ -22,6 +22,8 @@ const BalanceContainer = ({ transaction = [] }) => {
 
   return (
     <div className="balance-card">
+      {/* <h2 className="card-title">Account Summary</h2> */}
+
       <div className="balance-boxes">
         <div className="balance-item">
           <div className="title">Income</div>
