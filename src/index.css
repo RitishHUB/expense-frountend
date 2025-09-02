@@ -20,54 +20,56 @@ body {
   text-align: center;
 }
 
+/* ==== Expense Item ==== */
 .expense-item {
-  /* Remove full border, add only right border */
-  border-right: 5px solid transparent; /* default transparent border to keep layout */
+  border-right: 5px solid transparent;
   border-radius: 5px;
   padding: 8px 10px;
   display: flex;
   justify-content: space-between;
-  /* Optional: add a subtle box-shadow or light border for container */
-  border-left: 1px solid #f0c3c3; /* light left border for card separation */
-}
-
-/* Positive expense - green right border */
-.expense-item.expense-positive {
-  border-right-color: #129c12;
-}
-
-/* Negative expense - red right border */
-.expense-item.expense-negative {
-  border-right-color: #c11212;
-}
-
-/* Color the amount text accordingly */
-.expense-item.expense-negative .amount {
-  color: #c11212;
-}
-
-.expense-item.expense-positive .amount {
-  color: #129c12;
-}
-
-/* Container styling for each expense */
-.expense-item {
-  display: flex;
-  justify-content: space-between;
+  border-left: 1px solid #f0c3c3;
   align-items: center;
   background: #ffffff;
-  border-radius: 8px;
-  padding: 10px 15px;
   margin: 8px 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  font-family: Arial, sans-serif;
   font-size: 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 
 .expense-item:hover {
   transform: scale(1.02);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Positive/Negative colors */
+.expense-item.expense-positive {
+  border-right-color: #129c12;
+}
+.expense-item.expense-negative {
+  border-right-color: #c11212;
+}
+.expense-item.expense-positive .amount {
+  color: #129c12;
+}
+.expense-item.expense-negative .amount {
+  color: #c11212;
+}
+
+/* Buttons overlay */
+.btn-container {
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  opacity: 0;
+  border-radius: 5px;
+}
+.expense-item:hover .btn-container {
+  opacity: 1;
 }
 
 /* ==== Expense Form ==== */
@@ -78,7 +80,6 @@ body {
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  font-family: Arial, sans-serif;
 }
 
 .expense-form h2 {
@@ -103,59 +104,28 @@ body {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  outline: none;
-  transition: border 0.2s ease;
 }
 
 .expense-form input:focus {
-  border-color: #4CAF50;
+  border-color: #4caf50;
 }
 
 .expense-form button {
   width: 100%;
   padding: 10px;
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
-
 }
 
 .expense-form button:hover {
   background: #45a049;
 }
 
-/* ==== Expense Item ==== */
-.expense-item .title {
-  font-weight: 500;
-  color: #333;
-}
-
-.expense-item .amount {
-  font-weight: bold;
-  min-width: 70px;
-  text-align: right;
-}
-
-.expense-positive {
-  border-left: 5px solid #4CAF50;
-}
-
-.expense-positive .amount {
-  color: #4CAF50;
-}
-
-.expense-negative {
-  border-left: 5px solid #f44336;
-}
-
-.expense-negative .amount {
-  color: #f44336;
-}
-
-/* Main Card */
+/* ==== Balance Card ==== */
 .balance-card {
   background: #e578c4;
   padding: 20px;
@@ -163,26 +133,14 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   margin: auto;
-  
 }
 
-/* Card Title */
-.card-title {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.4rem;
-  font-weight: bold;
-  transform: scale(1.02);
-}
-
-/* Three boxes container */
 .balance-boxes {
   display: flex;
   justify-content: space-between;
   gap: 15px;
 }
 
-/* Each small box */
 .balance-item {
   flex: 1;
   background-color: #c389e7;
@@ -191,51 +149,21 @@ body {
   text-align: center;
 }
 
-/* Text inside small boxes */
 .balance-item .title {
   font-size: 1rem;
   font-weight: bold;
   color: white;
 }
 
-.balance-item .balance {
+.balance-item .balance,
+.balance1,
+.balance2 {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #222;
 }
-.amount.green {
+.balance1 {
   color: #129c12;
 }
-.amount.red {
+.balance2 {
   color: #c11212;
-}
-.balance1{
-  color: #129c12;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-.balance2{
-  color: #c11212;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-.expense-item{
-  position: relative;
-}
-.btn-container {
-position: absolute;
-  top: 0px;
-  right: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  border-radius: 5px;
-}
-.expense-item:hover .btn-container {
-  opacity: 1;
 }
