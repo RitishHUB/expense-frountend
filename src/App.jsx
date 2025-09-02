@@ -1,5 +1,5 @@
 import { useState } from "react";   // ✅ you forgot this import
-import Container from "./Components/Container";
+import Container from "./components/Container.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
